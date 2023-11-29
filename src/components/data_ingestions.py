@@ -23,6 +23,7 @@ import sys
 
 from src.exception import CustomException
 from src.logger import logging
+from src.components.data_transformations import DataTransformationConfig, DataTransformation
 
 import pandas as pd
 from sklearn.model_selection import train_test_split
@@ -77,8 +78,10 @@ class DataIngestion:
         logging.info('Entered the data ingestion method or component')
         
         # Try to load data from source into program
+        
         try:
-            df = pd.read_csv('notebook\StudentsPerformance.csv')
+            source_path = os.path.join('notebook', 'StudentsPerformance.csv')
+            df = pd.read_csv(source_path)
             logging.info('Read the dataset from notebook\StudentsPerformance.csv into memory as pandas.Dataframe')
         except Exception as e:
             raise CustomException(e, sys)
@@ -103,8 +106,10 @@ class DataIngestion:
             self.ingestion_config.test_data_path
         )
         
-        
 if __name__ == '__main__':
     data_ingestor = DataIngestion()
-    data_ingestor.initiate_date_ingestion()
-
+    train_data_path, test_data_path = data_ingestor.initiate_date_ingestion()
+    
+    transformer = DataTransformation() 
+    train_arr, test_arr, preprocessor_path = transformer.initiate_data_transformation(train_data_path, test_data_path)
+    print(preprocessor_path)
