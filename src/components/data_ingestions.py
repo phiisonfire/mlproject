@@ -24,6 +24,7 @@ import sys
 from src.exception import CustomException
 from src.logger import logging
 from src.components.data_transformations import DataTransformationConfig, DataTransformation
+from src.components.model_trainer import ModelTrainer
 
 import pandas as pd
 from sklearn.model_selection import train_test_split
@@ -113,3 +114,8 @@ if __name__ == '__main__':
     transformer = DataTransformation() 
     train_arr, test_arr, preprocessor_path = transformer.initiate_data_transformation(train_data_path, test_data_path)
     print(preprocessor_path)
+    
+    model_trainer = ModelTrainer()
+    print(model_trainer.model_trainer_file_path)
+    model_trainer.initiate_model_trainer(train_arr, test_arr, preprocessor_path)
+    
