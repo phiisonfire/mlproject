@@ -51,4 +51,4 @@ class CustomData:
             }
         except Exception as e:
             raise CustomException(e, sys)
-        return pd.DataFrame(custom_data_input_dict, index=None)
+        return pd.DataFrame(custom_data_input_dict)
