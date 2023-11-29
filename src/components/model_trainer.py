@@ -1,6 +1,26 @@
 """
-Train different models
-Choose the model that has the best performance
+Module: model_trainer
+
+This module provides a class, ModelTrainer, for training and saving the best regression model based on the given training and testing datasets. 
+It includes various regression models such as Linear Regression, Lasso Regression, Ridge Regression, KNeighbors Regressor, RandomForest Regressor, 
+and AdaBoost Regressor. The module also contains utility functions for evaluating and saving the best model.
+
+Classes:
+    - ModelTrainer: A class for training regression models and saving the best-performing model.
+
+Functions:
+    - initiate_model_trainer(train_arr, test_arr, preprocessor_path): 
+    Initializes the ModelTrainer class and trains regression models using the provided training and testing arrays.
+
+Usage Example:
+    ```
+    trainer = ModelTrainer()
+    trainer.initiate_model_trainer(train_arr, test_arr, preprocessor_path)
+    ```
+
+Note:
+    - The trained model is saved in the 'artifacts' directory with the filename 'model.pkl'.
+    - The module requires the 'src.exception', 'src.logger', and 'src.utils' modules for handling exceptions, logging, and utility functions, respectively.
 """
 import os
 import sys
@@ -36,6 +56,10 @@ class ModelTrainer():
                 'KNeighborsRegressor': KNeighborsRegressor(),
                 'RandomForestRegressor': RandomForestRegressor(),
                 'AdaBoostRegressor': AdaBoostRegressor()
+            }
+            
+            params = {
+                
             }
             
             model_report:dict = evaluate_model(X_train, y_train, X_test, y_test, models=models)
