@@ -1,21 +1,14 @@
 """Module: data_ingestion
 
-This module contains functions and classes for the data ingestion process in a machine learning project.
-
-Functions:
-    - load_data: Load data from various sources.
-    - clean_data: Perform data cleaning and preprocessing.
-    - explore_data: Conduct exploratory data analysis.
-    - feature_engineering: Create and transform features for machine learning.
+This module contains classes for the data ingestion process in a machine learning project.
 
 Classes:
-    - DataProcessor: A class for handling the data processing tasks.
+    - DataIngestionConfig: A data class for specifying paths to save output data.
+    - DataIngestion: A class for data ingestion, including reading data from a source, performing train-test split.
 
 Usage:
-    Example usage of the functions and classes can be found at the end of the file or in a separate script.
-
-Author:
-    Your Name <your.email@example.com>
+    - data_ingestor = DataIngestion()
+    - data_ingestor.initiate_date_ingestion()
 
 """
 import os
